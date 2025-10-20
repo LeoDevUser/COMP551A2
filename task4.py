@@ -86,23 +86,39 @@ l1_penalty = lambda w: np.sum(np.abs(w))
 
 #regularization coefficients to plot
 reg_list_l2 = [0, 1, 10]
-reg_list_l1 = [0, 10, 20]
+reg_list_l1 = [0, 1, 10]
 
 
 #cost contours for L2
-fig, axes = plt.subplots(ncols=2, nrows=1, constrained_layout=True, figsize=(10, 5))
-plot_contour(cost, [-10,10], [-5,5], 50, axes[0])
+fig, axes = plt.subplots(ncols=3, nrows=1, constrained_layout=True, figsize=(15, 5))
+plot_contour(cost, [-10,10], [-10,10], 50, axes[0])
 axes[0].set_title(r'cost function $J(w)$')
-plot_contour(l2_penalty, [-10,10], [-5,5], 50, axes[1])
+plot_contour(l2_penalty, [-10,10], [-10,10], 50, axes[1])
 axes[1].set_title(r'L2 reg. $||w||_2^2$')
+cost_plus_l2 = lambda w: cost(w) + 5*l2_penalty(w)
+plot_contour(cost_plus_l2, [-10,10], [-10,10], 50, axes[2])
+axes[2].set_title(r'L2 reg. cost $J(w) + 5 ||w||_2^2$')
+axes[0].set_xlabel(r'$w_0$')
+axes[0].set_ylabel(r'$w_1$')
+axes[1].set_xlabel(r'$w_0$')
+axes[1].set_ylabel(r'$w_1$')
+axes[2].set_xlabel(r'$w_0$')
+axes[2].set_ylabel(r'$w_1$')
 plt.show()
 
 #cost contours for L1
-fig, axes = plt.subplots(ncols=2, nrows=1, constrained_layout=True, figsize=(10, 5))
-plot_contour(cost, [-10,10], [-5,5], 50, axes[0])
+fig, axes = plt.subplots(ncols=3, nrows=1, constrained_layout=True, figsize=(15, 5))
+plot_contour(cost, [-10,10], [-10,10], 50, axes[0])
 axes[0].set_title(r'cost function $J(w)$')
-plot_contour(l1_penalty, [-10,10], [-5,5], 50, axes[1])
+plot_contour(l1_penalty, [-10,10], [-10,10], 50, axes[1])
 axes[1].set_title(r'L1 reg. $||w||_1$')
+cost_plus_l1 = lambda w: cost(w) + 5*l1_penalty(w)
+plot_contour(cost_plus_l1, [-10,10], [-10,10], 50, axes[2])
+axes[2].set_title(r'L1 reg. cost $J(w) + 5 ||w||_1$')
+axes[0].set_xlabel(r'$w_0$')
+axes[0].set_ylabel(r'$w_1$')
+axes[1].set_xlabel(r'$w_0$')
+axes[1].set_ylabel(r'$w_1$')
 plt.show()
 
 #cost functions with regularization
@@ -122,7 +138,7 @@ for i, reg_coef in enumerate(reg_list_l2):
     axes[i].plot(w_hist[:,1], w_hist[:,0], '-r', alpha=.3)
     axes[i].set_xlabel(r'$w_0$')
     axes[i].set_ylabel(r'$w_1$')
-    axes[i].set_title(r'L2 reg. cost $J(w) + ||w||_2^2$'+'\n'+ f' lambda = {reg_coef}')
+    axes[i].set_title(f'L2 reg. cost $J(w) + {reg_coef}'+ r'||w||_2^2$'+'\n'+ f'lambda = {reg_coef}')
     axes[i].set_xlim([-10,10])
     axes[i].set_ylim([-5,5])
 plt.show()
@@ -140,7 +156,7 @@ for i, reg_coef in enumerate(reg_list_l1):
     axes[i].plot(w_hist[:,1], w_hist[:,0], '-r', alpha=.3)
     axes[i].set_xlabel(r'$w_0$')
     axes[i].set_ylabel(r'$w_1$')
-    axes[i].set_title(r'L1 reg. cost $J(w) + ||w||_1$'+'\n'+ f' lambda = {reg_coef}')
+    axes[i].set_title(f'L1 reg. cost $J(w) + {reg_coef}'+ r'||w||_1$'+'\n'+ f'lambda = {reg_coef}')
     axes[i].set_xlim([-10,10])
     axes[i].set_ylim([-5,5])
 plt.show()
