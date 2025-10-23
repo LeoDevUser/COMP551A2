@@ -60,7 +60,7 @@ def _soft_threshold(z, gamma):
 
 class LassoRegressor:
  
-    def __init__(self, lambda_=0.0, penalize_bias=False, max_iter=5000, tol=1e-6):
+    def __init__(self, lambda_=0.0, penalize_bias=False, max_iter=500, tol=1e-4):
         self.lambda_ = float(lambda_)
         self.penalize_bias = penalize_bias
         self.max_iter = int(max_iter)
