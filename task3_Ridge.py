@@ -199,6 +199,10 @@ plt.show()
 
 # lambda=0 vs Ridge Regression 
 
+#fitting full-data models
+ridge_unreg = RidgeRegressor(lambda_=0.0, penalize_bias=penalize_bias).fit(Phi, y)
+ridge_best = RidgeRegressor(lambda_=best_lambda, penalize_bias=penalize_bias).fit(Phi, y)
+
 plt.figure(figsize=(8,5))
 
 # Grid for ridge + true function

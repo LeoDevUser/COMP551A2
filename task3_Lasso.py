@@ -1,6 +1,8 @@
 # Task 3 — Lasso (L1) 
 import numpy as np
+import matplotlib
 import matplotlib.pyplot as plt
+matplotlib.use('Qt5Agg') #Set GUI backend for plots
 
 
 # True function and data
